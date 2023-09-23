@@ -1,4 +1,4 @@
-
+//importing the array
 import studentData from './data.js'
 
 
@@ -8,18 +8,11 @@ const male_data=document.querySelector('.table-male-data')
 
 let maleStudents = studentData.filter((student) => student.gender == 'Male')
 
-
 let femaleStudents = studentData.filter((student) => student.gender == 'Female')
 
-//
-window.addEventListener('DOMContentLoaded', () => {
-  displayStudentDetail(studentData,student_data)
-  displayStudentDetail(femaleStudents,female_data)
-  displayStudentDetail(maleStudents,male_data)
-})
-
+// appending the html
 function displayStudentDetail(arr,container) {
-  let listOfStuent = arr.map((item,index) => {
+  let listOfStudent = arr.map((item,index) => {
     const{first_name,email,gender,img_src,marks,passing,last_name}=item;
     return ` <tr align="center">
       <td align="center">${index+1}</td>
@@ -38,11 +31,22 @@ function displayStudentDetail(arr,container) {
       <td>${email}</td>
     </tr> `
   })
-  listOfStuent = listOfStuent.join('')
+  listOfStudent = listOfStudent.join('')
 
-  container.innerHTML = listOfStuent
+  container.innerHTML = listOfStudent
 }
 
+//Mounting the data
+window.addEventListener('DOMContentLoaded', () => {
+  displayStudentDetail(studentData,student_data)
+  displayStudentDetail(femaleStudents,female_data)
+  displayStudentDetail(maleStudents,male_data)
+})
+
+
+
+
+//search functionality
 form.addEventListener('keyup', (e) => {
   e.preventDefault()
   const value = search.value
@@ -58,7 +62,7 @@ form.addEventListener('keyup', (e) => {
   
   displayStudentDetail(result,student_data)
   
-  // console.log(filtered)
+  
 })
 form.addEventListener('submit',(e)=>{
 e.preventDefault()
@@ -78,18 +82,22 @@ search.value="";
 
 
 
+
+
+//sort by marks
 sortByMarks.addEventListener('click', () => {
   let result = studentData.sort((a,b)=>a.marks-b.marks)
   
   displayStudentDetail(result,student_data)
 })
-
+//sort by class
 sortByClass.addEventListener('click', () => {
   let result = studentData.sort((a,b)=>a.class-b.class)
   
   displayStudentDetail(result,student_data)
 })
 
+//sort a to z
 sortAtoZ.addEventListener('click', () => {
   let result = studentData.sort((a,b)=>{
       if (a.first_name < b.first_name) return -1
@@ -101,6 +109,8 @@ sortAtoZ.addEventListener('click', () => {
   
 })
 
+
+//sort z to a
 sortZtoA.addEventListener('click', () => {
   let result = studentData.sort((a,b)=>{
       if (a.first_name < b.first_name) return 11
@@ -110,7 +120,7 @@ sortZtoA.addEventListener('click', () => {
   
   displayStudentDetail(result,student_data)
 })
-
+//sort by passing
 sortByPassing.addEventListener('click', () => {
   let result=studentData.filter((item)=>item.passing==true)
 
@@ -118,7 +128,7 @@ sortByPassing.addEventListener('click', () => {
 
 })
 
-
+// sort by gender
 sortByGender.addEventListener('click',()=>{
   all_students.classList.toggle('table-none')
   female.classList.toggle('table-none')
