@@ -1,4 +1,4 @@
-const studentData = [
+let studentData = [
   {
     id: 1,
     first_name: 'Chadwick',
@@ -1235,44 +1235,91 @@ const studentData = [
 ]
 
 const student_data = document.querySelector('.table-data')
+const female_data=document.querySelector('.table-female-data')
+const male_data=document.querySelector('.table-male-data')
 
+let maleStudents = studentData.filter((student) => student.gender == 'Male')
+
+
+let femaleStudents = studentData.filter((student) => student.gender == 'Female')
+
+//
 window.addEventListener('DOMContentLoaded', () => {
-  displayStudentDetail(studentData)
+  displayStudentDetail(studentData,student_data)
+  displayStudentDetail(femaleStudents,female_data)
+  displayStudentDetail(maleStudents,male_data)
 })
 
-function displayStudentDetail(arr) {
-  let listOfStuent = studentData.map((item,index) => {
-    return ` <div class="id-number">${index+1}</div>
-          <div class="name">
-        <div>
-        <img src="${item.img_src}" alt="profile" />
-        </div>
-        
-            <p>${item.first_name}</p>
-        
-          </div>
-          <div class="gender">${item.gender}</div>
-          <div class="cla">${item.class}</div>
-          <div class="marks">${item.marks}</div>
-          <div class="marks">${item.passing}</div>
+function displayStudentDetail(arr,container) {
+  let listOfStuent = arr.map((item,index) => {
+    const{first_name,email,gender,img_src,marks,passing,last_name}=item;
+    return ` <tr align="center">
+      <td align="center">${index+1}</td>
+      <td>
+        <div class="name">
 
-          <div class="email">${item.email}</div>`
+          <img src="${img_src}" alt="">
+          <span> ${first_name+" "+last_name} </span>
+        </div>
+       
+      </td>
+      <td>${gender}</td>
+      <td>${item.class}</td>
+      <td>${marks}</td>
+      <td>${passing}</td>
+      <td>${email}</td>
+    </tr> `
   })
   listOfStuent = listOfStuent.join('')
 
-  student_data.innerHTML = listOfStuent
+  container.innerHTML = listOfStuent
 }
+
+form.addEventListener('keyup', (e) => {
+  e.preventDefault()
+  const value = search.value
+  
+  let result= studentData.filter(
+    (item) =>
+      item.first_name.toLowerCase().includes(value) ||
+      item.last_name.toLowerCase().includes(value) ||
+      item.email.toLowerCase().includes(value)
+  )
+  
+ 
+  
+  displayStudentDetail(result,student_data)
+  
+  // console.log(filtered)
+})
+form.addEventListener('submit',(e)=>{
+e.preventDefault()
+const value = search.value
+let result= studentData.filter(
+  (item) =>
+    item.first_name.toLowerCase().includes(value) ||
+    item.last_name.toLowerCase().includes(value) ||
+    item.email.toLowerCase().includes(value)
+)
+
+
+displayStudentDetail(result,student_data)
+search.value="";
+})
+
+
+
 
 sortByMarks.addEventListener('click', () => {
   let result = studentData.sort((a,b)=>a.marks-b.marks)
-  console.log('hello')
-  displayStudentDetail(result)
+  
+  displayStudentDetail(result,student_data)
 })
 
 sortByClass.addEventListener('click', () => {
   let result = studentData.sort((a,b)=>a.class-b.class)
-  console.log('hello')
-  displayStudentDetail(result)
+  
+  displayStudentDetail(result,student_data)
 })
 
 sortAtoZ.addEventListener('click', () => {
@@ -1281,8 +1328,9 @@ sortAtoZ.addEventListener('click', () => {
       if (a.first_name > b.first_name) return 1
       return 0
   })
-  console.log('hello')
-  displayStudentDetail(result)
+  
+  displayStudentDetail(result,student_data)
+  
 })
 
 sortZtoA.addEventListener('click', () => {
@@ -1291,17 +1339,22 @@ sortZtoA.addEventListener('click', () => {
       if (a.first_name > b.first_name) return -1
       return 0
   })
-  console.log('hello')
-  displayStudentDetail(result)
+  
+  displayStudentDetail(result,student_data)
 })
 
-sortByGender.addEventListener('click', () => {
-  let result = studentData.sort((a,b)=>{
-    if(a.gender<b.gender)return -1;
-    if(a.gender>b.gender)return 1;
-    return 0;
+sortByPassing.addEventListener('click', () => {
+  let result=studentData.filter((item)=>item.passing==true)
 
-  })
-  console.log(result)
-  displayStudentDetail(result)
+ displayStudentDetail(result,student_data)
+
 })
+
+
+sortByGender.addEventListener('click',()=>{
+  all_students.classList.toggle('table-none')
+  female.classList.toggle('table-none')
+  male.classList.toggle('table-none')
+})
+
+

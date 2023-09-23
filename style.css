@@ -18,14 +18,14 @@ font-family: 'Roboto', sans-serif;;
    color:#fff;
    border:transparent;
    cursor:pointer;
-   padding:.75rem 1rem ;
-   letter-spacing:1px;
+   padding:.75rem 2rem ;
+   letter-spacing:2px;
    font-size:.8rem;
    text-transform:capitalize;
 }
 .section{
-    width:100vw;
-    height:100vh;
+    width:100%;
+    height:100%;
 
 }
 
@@ -74,55 +74,46 @@ text-transform:capitalize;
     margin:0 auto;
 }
 
+input{
+    padding:0 1rem;
+}
 
-.student-detail{
-    display:flex;
-    flex-direction:column;
+table{
+    width:95%;
+    margin:0 auto;
     color:black;
-    
-    text-transform:capitalize;
- width:95%;
-    margin:1rem auto;
-    border:1px solid black;
-    box-shadow:10px 10px 10px 5px rgba(0,0,0,0.2);
+    margin-top:1rem;
+border-collapse:collapse;
+text-transform:capitalize;
+font-size:.8rem;
 }
 
 
-.table-head{
-    display:grid;
-    grid-template-columns:.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
-    align-items:center;
-    justify-content:center;
+th,td{
+    padding:.75rem .5rem;
 }
-.table-head>h4{
-    padding:1rem;
-
-}
-.tables{
-    display:grid;
-    grid-template-columns:.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
-   align-items:center;
-   justify-content:center;
-   font-size:.8rem;
-
-
+tbody{
+    overflow:scroll;
 }
 
-.tables>div{
-    display:flex;
-    padding:1rem;
-    align-items:center;
-    justify-content:center;
-    border:1px solid black;
-}
 .name{
-    padding:.11rem !important;
-    justify-content:space-between;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+.name>img{
+border:1px solid black;
+border-radius:50%;
+width:1.5rem;
+}
+
+.table-none{
+    display:none;
+}
+
+caption{
+font-size:1.2rem;
+margin-bottom:.5rem;
+letter-spacing:1px;
 
 }
-.name>div{
-    height:100%;
-   
-    
-}
-
