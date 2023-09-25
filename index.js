@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
 //search functionality
 form.addEventListener('keyup', (e) => {
   e.preventDefault()
-  const value = search.value
+  const value = search.value.toLowerCase();
   
   let result= studentData.filter(
     (item) =>
